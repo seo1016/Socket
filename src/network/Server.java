@@ -9,10 +9,9 @@ public class Server {
         try {
             ServerSocket ss = new ServerSocket(1000);
             System.out.println("Server start");
+            Socket sc = ss.accept();
 
             while (true) {
-                Socket sc = ss.accept();
-
                 InputStream is = sc.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String str = br.readLine();
