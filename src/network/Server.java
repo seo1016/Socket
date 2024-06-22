@@ -11,16 +11,11 @@ public class Server {
             System.out.println("Server start");
             Socket sc = ss.accept();
 
-            while (true) {
-                InputStream is = sc.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String str = br.readLine();
-                System.out.println(str);
+            Output om = new Output(sc);
+            om.start();
+            Input im = new Input(sc);
+            im.start();
 
-                OutputStream os = sc.getOutputStream();
-                PrintWriter pw = new PrintWriter(os, true);
-                pw.println("[서버]" + str);
-            }
         } catch (Exception e) {
             System.out.println("서버 종료");
             e.printStackTrace();
